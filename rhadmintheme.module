@@ -3,9 +3,45 @@ function rhadmintheme_preprocess_html(&$variables) {
 // Add conditional stylesheets for admin pages on admin theme.
   if (arg(0)=="admin") {
     // reference your current admin theme
-    $theme_path = drupal_get_path('theme', 'adminimal');
+    $theme_path = drupal_get_path('theme', 'adminimal_theme');
     // reference your own stylesheet
-    drupal_add_css(drupal_get_path('module', 'rhadmintheme') .
-'/css/rhadmintheme.css', array('weight' => CSS_THEME));
+    drupal_add_css(drupal_get_path('module', 'rhadmintheme') . '/css/rhadmintheme.css', array('weight' => CSS_THEME));
+  }
+}
+
+/**
+ * Remove sticky/promote entirely from add and edit content type forms.
+ *
+ * Implements hook_form_FORM_ID_alter().
+ */
+function rhadmintheme_type_form_alter(&$form, &$form_state, $form_id) {
+  // Remove sticky/promote entirely from add and edit content type forms.
+  $options = array('promote', 'sticky');
+  foreach ($options as $key) {
+    unset($form['workflow']['node_options']['#options'][$key]);
+  }
+}
+
+/**
+ * Remove sticky/promote entirely from node/X/edit & node/X/add forms.
+ *
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function rhadmintheme_form_alter(&$form, &$form_state, $form_id) {
+  $options = array('promote', 'sticky');
+  foreach ($options as $key) {
+    $form['options'][$key]['#access'] = FALSE;
+  }
+}
+
+/**
+ * Remove some sticky/promote update options on admin/content.
+ *
+ * Implements hook_form_FORM_ID_alter().
+ */
+function rhadmintheme_admin_content_alter(&$form, &$form_state, $form_id) {
+  $options = array('demote', 'promote', 'sticky', 'unsticky', );
+  foreach ($options as $key) {
+    unset($form['admin']['options']['operation']['#options'][$key]);
   }
 }

@@ -21,5 +21,14 @@
 /* Disable Status and Mehrwertsteuersatz from Product Display Form*/
 .form-item-field-commerce-product-und-form-status,
 .field-name-field-product-tax {
-  display: none;
+  display: none !important;
+}
+/* Hide superfluous fieldsets from product reference vertical tab */
+#edit-field-commerce-product-und,
+#edit-field-commerce-product-und-form-product-details {
+    border: 0 none !important;
+    padding: 0 !important;
+      legend {
+        display: none;
+      }
 }
