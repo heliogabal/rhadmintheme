@@ -1,0 +1,25 @@
+#dashboard .dashboard-region div.block div.content ul.menu {
+	margin: 0;
+}
+#dashboard .dashboard-region ul.menu li {
+	list-style: none;
+}
+#dashboard .views-exposed-form .form-item input {
+  max-width: 200px;
+}
+#dashboard .chosen-container {
+  max-width: 200px;
+}
+#dashboard .commerce-backoffice-view .views-exposed-form .views-widget-filter-combine {
+  bottom: auto;
+  top: auto;
+  right: auto;
+  position: static;
+  padding: 0;
+}
+
+/* Disable Status and Mehrwertsteuersatz from Product Display Form*/
+.form-item-field-commerce-product-und-form-status,
+.field-name-field-product-tax {
+  display: none;
+}
