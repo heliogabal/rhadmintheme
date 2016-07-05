@@ -45,3 +45,4 @@ function rhadmintheme_admin_content_alter(&$form, &$form_state, $form_id) {
     unset($form['admin']['options']['operation']['#options'][$key]);
   }
 }
+
